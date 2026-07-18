@@ -1,0 +1,112 @@
+:root {
+  --bg: #161225;
+  --surface: #3b2a4a;
+  --surface-alt: #1f3a2e;
+  --text: #f2ece1;
+  --signal: #4dfff0;
+  --accent: #ff5fae;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Georgia', serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.2rem;
+}
+
+h2 {
+  font-weight: normal;
+  color: var(--text);
+  opacity: 0.7;
+  margin-top: 0;
+}
+
+/* ======================
+   LAYOUT
+======================*/
+
+.game-board {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.panel {
+  background-color: var(--surface);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  flex: 1;
+  min-width: 240px;
+}
+
+/*=======================
+   CLICKABLE LISTS
+========================*/
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  background-color: var(--surface-alt);
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+li:hover {
+  transform: translateY(-2px);
+}
+
+li.selected {
+  box-shadow: 0 0 8px 2px var(--signal);
+  border: 1px solid var(--signal);
+}
+
+/* ========================
+  RESULT MESSAGE
+==========================*/
+
+#resultMessage {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  min-height: 1.5rem;
+}
+
+/* ==========================
+   SUSPECT FILES DISPLAY
+============================*/
+
+#suspectFilesDisplay {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#suspectFilesDisplay > div {
+  background-color: var(--surface);
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 200px;
+}
+
+#suspectFilesDisplay h4 {
+  margin-top: 0;
+  color: var(--signal);
+}
