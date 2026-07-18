@@ -73,3 +73,5 @@ function placeClue(suspectId) {
   checkFile(suspectId);
 }
 
+renderClues();
+renderSuspects();
