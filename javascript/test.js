@@ -11,35 +11,54 @@ const clues = [
 const search = document.getElementById('search');
 const clueResults = document.getElementById('cluesResults');
 const suspectResults = document.getElementById('suspectResults');
+const resultMessage = document.getElementById('resultMessage');
 
-function displayResults(results, container, formatter) {
-  container.innerHTML = '';
-
-if (results.length === 0) {
-  container.innerHTML = '<li>No results found</li>';
-  return;
+function renderClues() {
+  clueResults.innerHTML = ''; 
+  clues.forEach(clue => {
+    const li = document.createElement('li');
+    li.textContent = clue.text;
+    li.addEventListener('click', () => selectClue(clue, li));
+    clueResults.appendChild(li);
+  });
 }
 
-results.forEach(item => {
-  const li = document.createElement('li');
-  li.textContent = formatter(item);
-  container.appendChild(li);
-});
+let selectedClue = null;
+let selectedClueEl = null;
+
+function selectClue(clue, el) {
+  if (selectedClueEl) selectedClueEl.classList.remove('selected');
+
+  selectedClue = clue;
+  selectedClueEl = el;
+  el.classList.add('selected');
+
+  checkMatch();
 }
 
-search.addEventListener('input', () => {
-  const query = search.value.trim().toLowerCase();
+let selectedSuspect = null;
+let selectedSuspectEl = null;
 
-  const filteredClues = clues.filter(clue =>
-    clue.id.toLowerCase().includes(query)
-  );
-  const filteredSuspects = Object.values(suspects).filter(suspects =>
-    suspects.name.toLowerCase().includes(query)
-    );
+function selectSuspect(suspect, el) {
+  if (selectedSuspectEl) selectedSuspectEl.classList.remove('selected');
 
-  displayResults(filteredClues, clueResults, clues => `${clues.id}`);
-  displayResults(filteredSuspects, suspectResults, suspects => `${suspects.name}`);
-});
+  selectedSuspect = suspect;
+  selectedSuspectEl = el;
+  el.classList.add('selected');
 
-displayResults(clues, clueResults, clue => `${clue.id}`);
-displayResults(Object.values(suspects), suspectResults, suspects => `${suspects.name}`);
+  checkMatch();
+}
+
+function checkMatch() {
+  if (selectedClue && selectedSuspect) {
+    const isMatch = selectedClue.belongsTo === selectedSuspect.id;
+    resultMessage.textContent = isMatch ? "True!" : "False.";
+
+    selectedClueEl.classList.remove('selected');
+    selectedSuspectEl.classList.remove('selected');
+    selectedClue = null;
+    selectedSuspect = null;
+    selectedClueEl = null;
+    selectedSuspectEl = null;
+  }
+}
