@@ -22,7 +22,7 @@ if (results.length === 0) {
 
 results.forEach(item => {
   const li = document.createElement('li');
-  li.textContent = formatter(item.id);
+  li.textContent = formatter(item);
   container.appendChild(li);
 });
 }
@@ -42,4 +42,4 @@ search.addEventListener('input', () => {
 });
 
 displayResults(clues, clueResults, clue => `${clue.id}`);
-displayResults(suspects, suspectResults, suspects => `${suspects.name}`);
+displayResults(Object.values(suspects), suspectResults, suspects => `${suspects.name}`);
