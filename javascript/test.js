@@ -36,6 +36,16 @@ function selectClue(clue, el) {
   checkMatch();
 }
 
+function renderSuspects() {
+  suspectResults.innerHTML = ''; 
+  Object.values(suspects).forEach(clue => {
+    const li = document.createElement('li');
+    li.textContent = suspect.text;
+    li.addEventListener('click', () => selectClue(clue, li));
+    suspectResults.appendChild(li);
+  });
+}
+
 let selectedSuspect = null;
 let selectedSuspectEl = null;
 
@@ -51,7 +61,7 @@ function selectSuspect(suspect, el) {
 
 function checkMatch() {
   if (selectedClue && selectedSuspect) {
-    const isMatch = selectedClue.belongsTo === selectedSuspect.id;
+    const isMatch = selectedSuspect.correctClues.includes(selectedClue.id);
     resultMessage.textContent = isMatch ? "True!" : "False.";
 
     selectedClueEl.classList.remove('selected');
