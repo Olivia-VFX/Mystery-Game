@@ -91,12 +91,19 @@ function renderSuspectFiles() {
       const clue = clues.find(c => c.id === clueId);
       const li = document.createElement('li');
       li.textContent = clue.text;
+      li.addEventListener('click', () => removeClue(suspectId, clueId));
       clueList.appendChild(li);
     });
     fileDiv.appendChild(clueList);
 
     filesDisplay.appendChild(fileDiv);
   });
+}
+
+function removeClue(suspectId, clueId) {
+  suspectFiles[suspectId] = suspectFiles[suspectId].filter(id => id !== clueId);
+  renderClues();
+  renderSuspectFiles();
 }
 
 renderClues();
