@@ -38,10 +38,10 @@ function selectClue(clue, el) {
 
 function renderSuspects() {
   suspectResults.innerHTML = ''; 
-  Object.values(suspects).forEach(clue => {
+  Object.values(suspects).forEach(suspect => {
     const li = document.createElement('li');
-    li.textContent = suspect.text;
-    li.addEventListener('click', () => selectClue(clue, li));
+    li.textContent = suspect.name;
+    li.addEventListener('click', () => selectClue(suspect, li));
     suspectResults.appendChild(li);
   });
 }
@@ -72,3 +72,6 @@ function checkMatch() {
     selectedSuspectEl = null;
   }
 }
+
+renderClues();
+renderSuspects();
