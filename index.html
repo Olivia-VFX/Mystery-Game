@@ -2,22 +2,30 @@
 <html>
   <head>
     <title>Mystery Game</title>
+    <link rel="stylesheet" href="css/notebook.css">
   </head>
 
   <body>
     <h1>Mystery Game</h1>
     <h2>Name is WIP</h2>
 
-    <h3>Suspects</h3>
-    <ul id="suspectResults"></ul>
+    <div class="game-board">
+      <div class="panel">
+        <h3>Suspects</h3>
+        <ul id="suspectResults"></ul>
+      </div>
 
-    <div id="suspectFilesDisplay" aria-live="polite"></div>
+      <div class="panel">
+        <div id="suspectFilesDisplay" aria-live="polite"></div>
+      </div>
 
-    <h3>Clues</h3>
-    <ul id="cluesResults"></ul>
+      <div class="panel">
+         <h3>Clues</h3>
+         <ul id="cluesResults"></ul>
+      </div>
 
-    <div id="resultMessage"></div>
-    
+      <div id="resultMessage"></div>
+    </div>
     <script src="javascript/test.js"></script>
   </body>
 </html>
