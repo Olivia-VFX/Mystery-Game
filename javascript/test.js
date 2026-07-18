@@ -41,7 +41,7 @@ function renderSuspects() {
   Object.values(suspects).forEach(suspect => {
     const li = document.createElement('li');
     li.textContent = suspect.name;
-    li.addEventListener('click', () => selectClue(suspect, li));
+    li.addEventListener('click', () => selectSuspect(suspect, li));
     suspectResults.appendChild(li);
   });
 }
