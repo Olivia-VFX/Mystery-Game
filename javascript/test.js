@@ -8,7 +8,6 @@ const clues = [
   {id: "clue3", text: "def", belongsTo: "suspect2"},
 ]; 
 
-const search = document.getElementById('search');
 const clueResults = document.getElementById('cluesResults');
 const suspectResults = document.getElementById('suspectResults');
 const resultMessage = document.getElementById('resultMessage');
