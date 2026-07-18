@@ -71,7 +71,34 @@ function placeClue(suspectId) {
   selectedClueEl = null;
   renderClues();
   checkFile(suspectId);
+  renderSuspectFiles();
+}
+
+function renderSuspectFiles() {
+  const filesDisplay = document.getElementById('suspectFilesDisplay');
+  filesDisplay.innerHTML = '';
+
+  Object.entries(suspectFiles).forEach(([suspectId, clueIds]) => {
+    const suspectName = suspects[suspectId].name;
+    const fileDiv = document.createElement('div');
+
+    const heading = document.createElement('h4');
+    heading.textContent = `${suspectName}'s File`;
+    fileDiv.appendChild(heading);
+
+    const clueList = document.createElement('ul');
+    clueIds.forEach(clueId => {
+      const clue = clues.find(c => c.id === clueId);
+      const li = document.createElement('li');
+      li.textContent = clue.text;
+      clueList.appendChild(li);
+    });
+    fileDiv.appendChild(clueList);
+
+    filesDisplay.appendChild(fileDiv);
+  });
 }
 
 renderClues();
 renderSuspects();
+renderSuspectFiles();
